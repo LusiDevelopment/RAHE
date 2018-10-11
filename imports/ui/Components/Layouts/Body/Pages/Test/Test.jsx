@@ -1,5 +1,6 @@
 import  React, {Component}  from "react";
 import TSlider from "./Slider";
+import { MySimpleForm } from "./Uniform/SimpleForm";
 
 
 export default class Test extends Component {
@@ -91,6 +92,8 @@ componentDidMount(){
                                 
                                 </button>
                          </div> 
+
+                         <MySimpleForm/>
                
                      </div>
 

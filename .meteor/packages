@@ -24,3 +24,4 @@ react-meteor-data
 meteortoys:allthings
 
 insecure
+aldeed:simple-schema
