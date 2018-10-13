@@ -1,3 +1,4 @@
+import SimpleSchema from 'simpl-schema';
 
 TasksCollection.Schema = new SimpleSchema({
     taskTitle:{type:String},
@@ -14,6 +15,30 @@ TasksCollection.Schema = new SimpleSchema({
     
     
   });
+
+
+import SimpleSchema from 'simpl-schema';
+ 
+export const schema = new SimpleSchema({
+
+  taskTitle:{type:String},
+    text: {type: String}, 
+    taskId:{type:Number},
+    creator:{type:String},
+    responsible:{type:String},
+    status:{type:Boolean},
+    comments:{type:String, optional:true},
+    priority:{type:Number},
+    category:{type:String},
+    createdAt:{type:Date},
+    targetCompletionDate:{type:Date},
+    
+    
+  });
+
+
+
+
   
   
   Meteor.methods({
