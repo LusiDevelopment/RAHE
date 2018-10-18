@@ -23,5 +23,5 @@ accounts-password@1.5.1
 react-meteor-data
 meteortoys:allthings
 
-insecure@1.0.7
 aldeed:simple-schema
+check

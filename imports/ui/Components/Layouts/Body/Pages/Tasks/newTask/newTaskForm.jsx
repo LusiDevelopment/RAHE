@@ -41,11 +41,28 @@ export default class newTaskForm extends Component {
 
     
     handleSubmit = (event) => {
+
+       const  data={
+            taskTitle: event.target.taskTitle.value,
+            text: event.target.text.value, 
+            taskId: event.target.taskId.value,
+            creator: event.target.creator.value,
+            responsible: event.target.responsible.value ,
+            status: event.target.status.value ,
+            comments: event.target.comments.value  ,
+            priority: event.target.priority.value ,
+            category: event.target.category.value ,
+           // createdAt: event.target.responsible.value ,
+           // targetCompletionDate: event.target.responsible.value ,
+        }
         
         event.preventDefault();
 
-        console.log(this.state);
+        console.log(data);
+       // console.log(data.text);
+        Meteor.call('tasks.insert', data);
         // here we copy the data to our method .. call the method
+
 
 
     };
@@ -110,7 +127,7 @@ export default class newTaskForm extends Component {
                                         label="Task ID"
                                         type="number"
                                         name="taskId"
-                                        value="" //this value should only be displayed from props and generated automatically
+                                        value={3} //this value should only be displayed from props and generated automatically
                                         data-validators="isRequired,isAlpha"
                                         onChange={this.handleChange}
                                         
@@ -234,7 +251,7 @@ export default class newTaskForm extends Component {
                             
                 </fieldset>
          
-                <Button variant="raised" type="submit">Save</Button>
+                <Button variant="raised" type="submit" > Save</Button>
               </form>
                 
                 
