@@ -9,7 +9,7 @@ Meteor.methods({
   //
 
     'tasks.insert'(data) {
-     // check(text, String);
+  
    
       // Make sure the user is logged in before inserting a task
     //  if (! this.userId) {

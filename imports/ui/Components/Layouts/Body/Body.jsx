@@ -1,5 +1,6 @@
 import  React, {Component}  from "react";
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
  
 
@@ -20,18 +21,22 @@ const styles = {
 
 export default class Body extends Component {
 
-
+//wrap="nowrap" 
 
   render(){
 
     return (
       <div>
       
-            <Grid container> 
+            <Grid   container 
+                    direction="row"
+                    justify="space-evenly"
+                    alignItems="center" 
+                    spacing={8} > 
                     
                     <Grid item sm={12}>
-                        
-                        <h1> Body Page shows under Heres !</h1> 
+                        <Paper>
+                        <h1> Body Page shows under Heres !</h1>  </Paper>
                     
                     </Grid>
                     

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Mongo } from 'meteor/mongo';
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import { Tasks } from '../../../../../../api/Collections/Collections';
+
  
-import Task from './Task.jsx';
-//import {TasksCollection} from '../../../../../../api/Schema/Schemas.jsx'
-//import {Tasks} from '../../../../../../api/Schema/Schemas.jsx'
- 
+
 // App component - represents the whole app
 
 // App component - represents the whole app
@@ -28,7 +28,7 @@ class TasksList extends Component {
   }
  
   renderTasks() {
-    console.log(this.props.tasks);
+    console.log(Tasks.text);
     return this.props.tasks.map((task) => (
       <Task key={task._id} task={task} />
     ));
@@ -42,20 +42,27 @@ class TasksList extends Component {
         <header>
           <h1>Todo List</h1>
         </header>
- 
-        <ul>
-          {this.renderTasks()}
-        </ul>
+       
+
+        <div>
+            <ul>
+              {this.renderTasks()}
+            </ul>
+        </div>
+
+        
+
+
       </div>
     );
   }
 }
 
 
-export default withTracker(({TasksCollection}) => {
+export default withTracker(({}) => {
   Meteor.subscribe('tasks');
   return {
    // tasks: TasksCollection.find({}).fetch(),
-    tasks: TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch(),
+    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
   };
 })(TasksList);

@@ -4,10 +4,10 @@ import Tab from '@material-ui/core/Tab';
 
 export default class TabNavB extends Component{
 
-
+  
 
   render(){
-
+    
     return (
         <Paper> 
                 <Tabs 

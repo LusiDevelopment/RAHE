@@ -17,7 +17,7 @@ export default class Navigation extends Component {
                        <li> <Link to="/" > Home</Link> </li> 
                        <li> <Link to="/accounts" > Accounts</Link> </li> 
                        <li> <Link to="/tasks" > Tasks List</Link> </li> 
-                       <li> <Link to="/newtask" > New Task</Link> </li> 
+                     
                        <li> <Link to="/test" > Test Page</Link> </li> 
                 
                 </ul>

@@ -1,8 +1,8 @@
 import  React, {Component}  from "react";
 
-import {TextField,FormControl,InputLabel,MenuItem,Checkbox,FormHelperText,Button,Select} from '@material-ui/core';
+import {TextField,FormControl,InputLabel,MenuItem,Checkbox,FormHelperText,Button,Select,Typography} from '@material-ui/core';
 
-export default class newTaskForm extends Component {
+export default class MyNewForm extends Component {
 
     constructor(props){
         super(props);
@@ -90,8 +90,14 @@ export default class newTaskForm extends Component {
    // const { classes } = props;
     return (
         <div> 
-                
-                <h3> Add a new Task here!</h3>  
+                    <Typography variant="display1" component="h2">
+                            My Own Form
+                    </Typography> 
+                <h3> </h3>  
+
+                <Typography variant="title" component="h2">
+                        Add a new Task here!
+                    </Typography> 
 
                 <form className="new-task" onSubmit={this.handleSubmit} >
 
@@ -170,7 +176,7 @@ export default class newTaskForm extends Component {
                                         <MenuItem value=""><em>Please select this Task Status</em></MenuItem>
                                         <MenuItem value={1}>Done</MenuItem>
                                         <MenuItem value={2}>Open</MenuItem>
-                                        <MenuItem value={3}>On going</MenuItem>
+                                        <MenuItem value={2}>Ongoing</MenuItem>
                                         </Select>
                                         <FormHelperText>Done:Task is Completed <br />
                                                         Open:Task not yet started <br />
@@ -201,9 +207,9 @@ export default class newTaskForm extends Component {
                                         <InputLabel>Priority</InputLabel>
                                         <Select value={this.state.priority} name="priority" onChange={this.handleChange}>
                                         <MenuItem value=""><em>Please select this Task Priority</em></MenuItem>
-                                        <MenuItem value={1}>High</MenuItem>
-                                        <MenuItem value={2}>Low</MenuItem>
-                                        <MenuItem value={3}>Normal</MenuItem>
+                                        <MenuItem value={2}>High</MenuItem>
+                                        <MenuItem value={1}>Low</MenuItem>
+                                        <MenuItem value={1}>Normal</MenuItem>
                                         </Select>
                                         <FormHelperText>High:Task is Very Important <br />
                                                         Low:Task had no time constraint <br />

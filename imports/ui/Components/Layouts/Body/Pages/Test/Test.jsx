@@ -1,6 +1,8 @@
 import  React, {Component}  from "react";
 import TSlider from "./Slider";
-import { MySimpleForm } from "./Uniform/SimpleForm";
+import MyUniForm from "./Uniform/UniForm";
+import MyNewForm from "../Tasks/newTask/myNewForm";
+
 
 export default class Test extends Component {
 
@@ -10,7 +12,8 @@ constructor(props){
     this.state ={
 
         count: 1,
-        visible: true
+        visible: true,
+        formVisible: true
     };
 
 }
@@ -62,6 +65,8 @@ componentDidMount(){
   render(){
 
     const btnText = this.state.visible? "Hide" : "show";
+    const formBtn = this.state.formVisible? "Change to UniForm Form " : "Change to My Own Form";
+
 
     return (
                
@@ -91,11 +96,22 @@ componentDidMount(){
                                 
                                 </button>
                          </div> 
+                         <div>
+                                <button onClick={ ()=>{
+                                    this.setState({
 
-                         <MySimpleForm/>
+                                        formVisible: !this.state.formVisible
+                                    });
+
+                                }} > 
+                                
+                                {formBtn}
+                                
+                                </button>
+                         </div> 
 
                          <div>
-                          
+                             { this.state.formVisible ? <MyNewForm /> : <MyUniForm /> }
                              
                          </div>
                
@@ -107,4 +123,7 @@ componentDidMount(){
   }
 
 } 
+
+
+
 
