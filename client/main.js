@@ -1,29 +1,33 @@
-import React from 'react';
+/* 
+ *  Author: Annick K
+ *  Created on: 2018-10-26
+ *  Component: main client 
+ * 
+ *  Description: the client file that run on start-up
+ * 
+ *  Changes and updates: 
+ * 
+*/
+
 import { Meteor } from 'meteor/meteor';
+
+// Render is required to target and run the HTML element
+import React from 'react';
 import { render } from 'react-dom';
-import {BrowserRouter as Router} from 'react-router-dom';
 
-import { Mongo } from 'meteor/mongo';
-
-
+// Get the App component and html documents where the App will run, render
 import '../imports/both/App.jsx'; 
 import './main.html';
 
-import Layout from '../imports/ui/Components/Layouts/Layouts'
-
-  Meteor.startup(() => {
-
-    const App = document.getElementById('App');
+import App from '../imports/ui/Application/App.jsx';
 
 
-    render( 
-        <Router>
+Meteor.startup(() => {
 
-           <Layout/>
-        
-        </Router>,
+    const TargetRender = document.getElementById('render-target');
 
-        App);
+
+    render(   <App />,  TargetRender );
   
   });
 

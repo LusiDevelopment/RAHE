@@ -1,6 +1,5 @@
 import  React, {Component}  from "react";
 
-import Title from './Title/Title';
 import Navigation from "./Navigation/Nagivation";
 
 export default class Header extends Component {
@@ -10,20 +9,10 @@ export default class Header extends Component {
       
 
     return (
-        <div> 
-                <header>
-                            <h1> This is the Header</h1>
-                            <Navigation></Navigation>
-                    <div>
-                            <Title title = {this.props.title} />
-                           
-                    </div>
-                     
-                </header>
-        
-        </div>
-          
-    );
+               
+                          <Navigation title = {this.props.title} />
+              
+        );
   }
 
 } 

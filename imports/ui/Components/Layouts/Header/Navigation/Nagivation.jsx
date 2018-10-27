@@ -1,5 +1,7 @@
 import  React, {Component}  from "react";
 import {Link} from 'react-router-dom';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import Drawer from '@material-ui/core/SwipeableDrawer';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,40 +15,89 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 
-import AccountsUIWrapper from "../../../../AccountsUI/AccountsUI";
+import { withStyles } from '@material-ui/core/styles';
 
-export default class Navigation extends Component {
+
+import AccountsUIWrapper from "../../../../AccountsUI/AccountsUI";
+import logInDrawer from "./LogInDrawer";
+import MenuDrawer from "./MenuDrawer";
+
+const drawerWidth = 240;
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+  },
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  appBar: {
+    marginLeft: drawerWidth,
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
+  },
+  menuButton: {
+    marginRight: 20,
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
+  },
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3,
+  },
+});
+
+
+class Navigation extends Component {
+
+  // Define the defaults values and received props
+  constructor(props) {
+      super(props);
+      this.state = {
+
+        left: false,
+        change: false,
+        mobileOpen: false,
+      }
+
+   }
+
+   toggleDrawer = () => () => {
+    this.setState({
+           mobileOpen: !state.mobileOpen,
+    });
+  };
+
 
 
 
   render(){
 
+    console.log(this.state.change);
+
     return (
         <div> 
-                
-                <h3> Navigate Page shows Heres !</h3>  
-               
-                <ul>
-                       <li> <Link to="/" > Home</Link> </li> 
-                       <li> <Link to="/accounts" > Accounts</Link> </li> 
-                       <li> <Link to="/tasks" > Tasks List</Link> </li> 
-                     
-                       <li> <Link to="/test" > Test Page</Link> </li> 
-                
-                </ul>
-             
-
-                <AppBar  >
+          
+                <AppBar  position="static" z-index={2}>
                       <Toolbar>
                         <IconButton
                           color="inherit"
                           aria-label="Open drawer"
-                         
+                          onClick={this.toggleDrawer}
                         >
                           <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit" >
-                          RAHE Application
+                        {this.props.title}
                         </Typography>
                         <div>
                             <IconButton
@@ -59,20 +110,37 @@ export default class Navigation extends Component {
                             <AccountsUIWrapper/>
 
                         </div>
-                        <Button color="inherit">Login</Button>
-                       
+                        <Button color="inherit" onClick={() => {this.setState( {change: !this.state.change}) } } >Login</Button>
+                        
                       </Toolbar>
                 </AppBar>
+                <Hidden smUp implementation="css">
+                 <Drawer
+                      variant="temporary"
+                      
+                      open={this.state.mobileOpen}
+                      onClose={this.toggleDrawer}
+                      onOpen={this.toggleDrawer}
+                      ModalProps={{
+                        keepMounted: true, // Better open performance on mobile.
+                      }}
+                  >
+
+                    {logInDrawer}
+                  
+                  </Drawer>
+                  </Hidden>
+                  
+                  <Typography variant="h6" color="inherit" >
+                      my data here
+                        </Typography>
                 
-                
-          </div>
-                    
-                
-                
-                
-    
-           
+                </div> 
+     
     );
+   
   }
 
 } 
+
+export default withStyles(styles, { withTheme: true })(Navigation);
