@@ -1,8 +1,8 @@
 import React, {Component}  from 'react';
-import {LongTextField,ValidatedForm,AutoForm,AutoFields,ErrorsField,SubmitField,AutoField} from 'uniforms--material-ui';
-import { tasksSchema } from '../../../../../../../api/Schema/Schemas';
+import {ErrorsField,SubmitField,AutoField} from 'uniforms--material-ui';
+import  {TasksSchema}  from '../../../../../../../api/Collections/Tasks';
 
-import {TextField,FormControl,InputLabel,MenuItem,Checkbox,FormHelperText,Button,Select,Typography} from '@material-ui/core';
+import {Typography} from '@material-ui/core';
 import MAutoForm from './MAutoForm';
 
 
@@ -87,7 +87,7 @@ export default class MyUniForm extends Component {
 
                 <MAutoForm
                       
-                        schema={tasksSchema}
+                        schema={TasksSchema}
                         showInlineError={ true }
                         onSubmit={this.handleSubmit} 
                         validate="onSubmit"
@@ -99,12 +99,12 @@ export default class MyUniForm extends Component {
                 >
 
                    
-                      <AutoField  name="taskTitle"  />
+                      <AutoField  name="title"  />
                       <AutoField  name="text"  />
 
                        <AutoField  name="comments"  />
                      
-                      <AutoField  name="creator"  />
+                      <AutoField  name="author"  />
                       <AutoField  name="responsible"  />
 
                       <AutoField  name="status"  />

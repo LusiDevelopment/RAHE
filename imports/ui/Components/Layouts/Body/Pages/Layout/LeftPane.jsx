@@ -2,7 +2,7 @@ import  React, {Component}  from "react";
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-
+import {Link} from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -16,11 +16,32 @@ import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import HomeIcon from '@material-ui/icons/Home';
+
 
 
 
 export default class LeftPane extends Component {
 
+  constructor(props) {
+    super(props);
+   // this.handleChange = this.handleChange.bind(this);
+    this.state = {
+
+      change: this.props.Open,
+     
+    }
+
+ }
+/*
+ handleChange() {
+
+
+  this.setState({ change: !this.state.change, });
+
+  this.props.toggleDrawer();
+}
+*/
 
     render(){
   
@@ -29,60 +50,83 @@ export default class LeftPane extends Component {
           <Grid container wrap="nowrap" spacing={24}>
               
                   <Paper style={this.props.styles.Paper}> 
-                      <Grid container item xs={12} spacing={24}>
-                   
+                      <Grid item xs={12} >
+                          <Divider/>
                               <Typography variant="display1" component="h2">
-                                        Left Pane
+                                        LogIn Menu
                               </Typography> 
 
                                 <Divider/>
 
                               <List component="nav">
-                                  <ListItem button>
+
+                                  <Link to="/" >
+                                    <ListItem button onClick={this.props.toggleDrawer}>
+                                      <ListItemIcon>
+                                         <HomeIcon/>
+                                      </ListItemIcon>
+                                      <ListItemText primary="Home" />
+                                      </ListItem>
+                                  </Link> 
+                      
+
+                                  <Divider/>
+
+                                  
+                                  <Link to="/accounts" > 
+                                      <ListItem button>
+                                        <ListItemIcon>
+                                          <InboxIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Accounts" />
+                                      </ListItem>
+                                  
+                                  </Link> 
+
+                                  <Divider/>
+
+                                 <Link to="/tasks" > 
+                                    <ListItem button>
                                       <ListItemIcon>
                                         <InboxIcon />
                                       </ListItemIcon>
-                                      <ListItemText primary="Home" />
-                                  </ListItem>
+                                      <ListItemText primary="Tasks List" />
+                                    </ListItem>
+                                  
+                                  </Link> 
 
-                                  <Divider/>
-
-                                  <ListItem button>
+                                  <Divider />
+                                    <Link to="/test" > 
+                                      <ListItem button>
                                       <ListItemIcon>
-                                        <PersonIcon />
+                                        <InboxIcon />
                                       </ListItemIcon>
-                                      <ListItemText primary="LogIn" />
-                                  </ListItem>
+                                      <ListItemText primary="Test Page" />
+                                      </ListItem>
 
-                                  <Divider/>
-
-                                  <ListItem button>
-                                      <ListItemIcon>
-                                        <PersonIcon />
-                                      </ListItemIcon>
-                                      <ListItemText primary="SignUp" />
-                                  </ListItem>
-
+                                    </Link> 
                                   <Divider/>
 
                               </List>
                           </Grid>
                           <div >
-                            <Grid container item xs={12} spacing={24}>
-                                <Grid item xs={6} spacing={8}>
+                            <Grid  item xs={12} >
+                                <Grid item xs={6} >
                                     <Avatar >
                                       <FolderIcon />
                                     </Avatar>
                                 </Grid>
 
-                                <Grid item xs={6} spacing={8}>
+                                <Grid item xs={6} >
                                     <Avatar >
                                       <PageviewIcon />
                                     </Avatar>
                                 </Grid>
-                                <Grid item xs={6} spacing={8}>
+                                <Grid item xs={6} >
                                     <Avatar >
                                       <AssignmentIcon />
+                                      
+                                 
                                     </Avatar>
                                 </Grid>
                             </Grid>

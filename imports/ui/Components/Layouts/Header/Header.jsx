@@ -9,9 +9,10 @@ export default class Header extends Component {
       
 
     return (
+              <header>
                
-                          <Navigation title = {this.props.title} />
-              
+                       <Navigation title = {this.props.title} Open={this.props.Open} toggleDrawer={this.props.toggleDrawer} />
+              </header>
         );
   }
 

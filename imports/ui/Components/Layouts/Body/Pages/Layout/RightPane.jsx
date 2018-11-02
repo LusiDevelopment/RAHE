@@ -10,7 +10,6 @@ import Error404 from "../Error404/Error404";
 import TasksList from "../Tasks/Tasks.jsx";
 import Test from "../Test/Test";
 
-import {TasksCollection} from '../../../../../../api/Schema/Schemas.jsx'
 
 
 export default class RightPane extends Component {
@@ -36,8 +35,7 @@ export default class RightPane extends Component {
           <Grid container wrap="nowrap" spacing={24}>   
               <Grid item xs>    
               <Paper style={this.props.styles.Paper}> 
-                      
-                      <h1> RightPane Page shows under Heres !</h1> 
+                     
 
                       <Switch>
       
@@ -54,7 +52,7 @@ export default class RightPane extends Component {
       
                               <Route
                                     path='/tasks'
-                                    render={(props) => <TasksList {...props} TasksCollection={TasksCollection} />}
+                                    render={(props) => <TasksList {...props}  />}
                                     />
 
 

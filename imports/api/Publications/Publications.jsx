@@ -1,8 +1,13 @@
 import { Meteor } from 'meteor/meteor';
-import { TasksCollection } from '../Schema/Schemas';
 
+import {Tasks} from '../Collections/Tasks'
+
+if (Meteor.isServer) {
   
+
 Meteor.publish('tasks', function tasksPublication() {
-    return TasksCollection.find();
+    return Tasks.find();
   });
 
+
+}

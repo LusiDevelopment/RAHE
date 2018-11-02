@@ -31,26 +31,37 @@ export default class Layout extends Component {
   // Define the defaults values and received props
   constructor(props) {
       super(props);
+      this.toggleDrawer = this.toggleDrawer.bind(this);
+
       this.state = {
 
-            title: "Welcome to the title",
+            title: "Rahe Application",
+            Open: false,
+            
       }
 
    }
 
+   toggleDrawer () {
+    this.setState({
+           Open:!this.state.Open,
+    });
+  };
+ 
+
   render(){
 
-    const title = "Welcome! this is ourr title";
-
+    const title = "Rahe Application";
+    console.log("Open", this.state.Open);
     return (
 
-      <div className={Layout} >
+      <div  >
        <Grid container>
            <Grid item xs={12} xl={6} > 
             <Paper style={paperStyle} z-index={5} >
-                <Header  className={Header} title = {title} />
+                <Header  className={Header} title = {title}  Open={this.state.Open} toggleDrawer={this.toggleDrawer} />
                 
-                <Body className={Body} />
+                <Body className={Body} toggleDrawer={this.toggleDrawer} Open={this.state.Open} />
 
                 <Footer className={Footer} />
               </Paper>

@@ -26,34 +26,16 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    flexGrow: 1,
   },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
+  grow: {
+    flexGrow: 1,
   },
   appBar: {
-    marginLeft: drawerWidth,
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-    },
+    zIndex: theme.zIndex.drawer + 1,
   },
-  menuButton: {
-    marginRight: 20,
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3,
-  },
+ 
+ 
 });
 
 
@@ -62,80 +44,48 @@ class Navigation extends Component {
   // Define the defaults values and received props
   constructor(props) {
       super(props);
+      
       this.state = {
 
-        left: false,
-        change: false,
-        mobileOpen: false,
+    
+       
       }
 
    }
 
-   toggleDrawer = () => () => {
-    this.setState({
-           mobileOpen: !state.mobileOpen,
-    });
-  };
 
-
+ 
 
 
   render(){
 
-    console.log(this.state.change);
+    
+
+    const { classes, theme } = this.props;
 
     return (
-        <div> 
+        <div className={classes.toolbar}> 
           
-                <AppBar  position="static" z-index={2}>
-                      <Toolbar>
-                        <IconButton
-                          color="inherit"
-                          aria-label="Open drawer"
-                          onClick={this.toggleDrawer}
-                        >
-                          <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6" color="inherit" >
-                        {this.props.title}
-                        </Typography>
-                        <div>
+                <AppBar  position="static" z-index={5} className={classes.appBar} >
+                        <Toolbar>
                             <IconButton
-                                  aria-haspopup="true"
-                                  color="inherit"
-                              >
-                                      <AccountCircle />
+                              color="inherit"
+                              aria-label="Open drawer"
+                              onClick={this.props.toggleDrawer}
+                            >
+                                  <MenuIcon />
                             </IconButton>
-                              
+                        
+                            <Typography variant="display1" color="inherit" className={classes.grow} >
+                                  {this.props.title}
+                            </Typography>
+                       
                             <AccountsUIWrapper/>
-
-                        </div>
-                        <Button color="inherit" onClick={() => {this.setState( {change: !this.state.change}) } } >Login</Button>
                         
                       </Toolbar>
+                     
                 </AppBar>
-                <Hidden smUp implementation="css">
-                 <Drawer
-                      variant="temporary"
-                      
-                      open={this.state.mobileOpen}
-                      onClose={this.toggleDrawer}
-                      onOpen={this.toggleDrawer}
-                      ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                      }}
-                  >
-
-                    {logInDrawer}
-                  
-                  </Drawer>
-                  </Hidden>
-                  
-                  <Typography variant="h6" color="inherit" >
-                      my data here
-                        </Typography>
-                
-                </div> 
+         </div> 
      
     );
    

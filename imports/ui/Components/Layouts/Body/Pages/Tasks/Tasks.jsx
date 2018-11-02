@@ -1,34 +1,32 @@
 import React, { Component } from 'react';
+import { Mongo } from 'meteor/mongo';
+
 import { withTracker } from 'meteor/react-meteor-data';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import { Tasks } from '../../../../../../api/Collections/Collections';
 
- 
+import {Tasks} from '../../../../../../api/Collections/Tasks.jsx';
+
+import Task from './Task';
 
 // App component - represents the whole app
 
-// App component - represents the whole app
+// App component - represents the whole 
+
 class TasksList extends Component {
+
   constructor(props) {
     super(props);
     this.state = { 
-            /* initial state */ 
-         //   TasksCollection:[],
+       
             textLoop:"test"
     };
   }   
 
-  getTasks() {
-    return [
-      { _id: 1, text: 'This is task 1' },
-      { _id: 2, text: 'This is task 2' },
-      { _id: 3, text: 'This is task 3' },
-    ];
-  }
+
  
   renderTasks() {
-    console.log(Tasks.text);
+    //console.log(Tasks);
     return this.props.tasks.map((task) => (
       <Task key={task._id} task={task} />
     ));
@@ -38,20 +36,15 @@ class TasksList extends Component {
   //  Meteor.subscribe('tasks',TasksCollection._id);
    // console.log(this.props.TasksCollection.find());
     return (
-      <div className="container">
-        <header>
-          <h1>Todo List</h1>
-        </header>
-       
-
-        <div>
-            <ul>
-              {this.renderTasks()}
-            </ul>
-        </div>
-
+      <div >
         
-
+              <h1>Todo List</h1>
+  
+              <div>
+                  
+                    {this.renderTasks()}
+                
+              </div>
 
       </div>
     );
@@ -59,10 +52,14 @@ class TasksList extends Component {
 }
 
 
-export default withTracker(({}) => {
-  Meteor.subscribe('tasks');
+export default withTracker(() => {
+  
+   const handleTasks = Meteor.subscribe('tasks');
+    const loadingTasks = !handleTasks.ready();
+    const getList = Tasks.find().fetch();
+    const listExist = !loadingTasks && !!getList  
   return {
-   // tasks: TasksCollection.find({}).fetch(),
-    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+    //tasks: Tasks.find({}).fetch(),
+    tasks: listExist? getList : [],
   };
 })(TasksList);
