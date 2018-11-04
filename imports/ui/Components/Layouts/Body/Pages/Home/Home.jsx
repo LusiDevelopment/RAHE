@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Paper, Grid } from "@material-ui/core";
 
+import TimeContainer from '../../../../Time/GetTime';
+
 const styles = {
   card: {
     maxWidth: 345,
@@ -42,6 +44,9 @@ export default class Home extends Component {
           <Typography variant="headline"   >
                        Show times Date (Today)
           </Typography>
+
+              <TimeContainer />
+
           </Grid>
           <Grid item xs={12} sm={12} md={12} xl={12}>
           <Card raised={true} >
