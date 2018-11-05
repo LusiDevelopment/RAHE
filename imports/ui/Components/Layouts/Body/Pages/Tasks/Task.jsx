@@ -1,6 +1,6 @@
 import  React, {Component}  from "react";
 
-import ListSubheader from '@material-ui/core/ListSubheader';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -9,6 +9,8 @@ import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import SendIcon from '@material-ui/icons/Send';
+
 
 export default class Task extends Component {
      
@@ -16,7 +18,7 @@ export default class Task extends Component {
         super(props);
         this.state = { 
             
-              open: true,
+              open: false,
                 
         };
       }  
@@ -28,41 +30,35 @@ export default class Task extends Component {
 
   render(){
 
-    console.log(this.props.task);
-
     return (
          
              <div>
 
                  <List
-                    component="nav"
-                    subheader={<ListSubheader component="div">Tasks List Items</ListSubheader>}
-                  >
+                    component="nav">
+
+                        <ListItem button onClick={this.handleClick}>
+                              <ListItemIcon>
+                                  <StarBorder />
+                              </ListItemIcon>
+                              <ListItemText>
+                                  {this.props.task.title}
+                              </ListItemText>
+                              {this.state.open ? <ExpandLess /> : <ExpandMore />}
+                        </ListItem>
+
                         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                           <List component="div" disablePadding>
-                          <ListItemIcon>
-                                      <StarBorder />
-                          </ListItemIcon>
-                            <ListItemText >
-                          {this.state.open ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemText>
-                          
-                            <ListItem  button onClick={this.handleClick}>
-                                  
-                                  
-
-                                  <ListItemText>
-                                        
-                                        {this.props.task.comments}
-                                    
-                                  </ListItemText>
-
-                                  <ListItemText>
-                                        
-                                        {this.props.task.text}
-                                    
-                                  </ListItemText>
-
+                            <ListItem button>
+                              <ListItemIcon>
+                                  <SendIcon />
+                              </ListItemIcon>
+                              <ListItemText>
+                                  {this.props.task.comments}
+                              </ListItemText>
+                              <ListItemText>
+                                  {this.props.task.text}
+                              </ListItemText>
                             </ListItem>
                           </List>
                         </Collapse>
