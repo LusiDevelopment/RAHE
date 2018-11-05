@@ -15,6 +15,7 @@ import SimpleSchema from 'simpl-schema';
 
 const Tasks = new Mongo.Collection('tasks');
 
+
 const TasksSchema = new SimpleSchema({
 
     title:{
@@ -40,12 +41,18 @@ const TasksSchema = new SimpleSchema({
 
     author:{
         type:String,
-        defaultValue:'',
         label:"created By",
-     //   autoValue: function() {
-     //       return this.Meteor.userId()
-           
-   //     }
+        autoValue: function (){
+                                if( Meteor.userId()){
+                                    console.log("User ID", Meteor.user().username);
+                                    return Meteor.userId();
+                                    }
+                                    else{
+
+                                    }
+            
+        },
+      
     },
 
     responsible:{
@@ -59,8 +66,7 @@ const TasksSchema = new SimpleSchema({
         defaultValue:'',
         label:"comments here",
         optional:true,
-        custom: ()=> console.log("Server Simpl Schema"),
-        
+      
     },
 
     priority:{
@@ -89,7 +95,7 @@ const TasksSchema = new SimpleSchema({
     createdAt:{
         type:Date,
         optional:true,
-       autoValue:  new Date,
+        autoValue:  new Date,
      
     },
     targetCompletionDate:{
@@ -131,7 +137,7 @@ Meteor.methods({
    // if (data.title.length > 10)
     //  throw new Meteor.Error(413, 'Title  too long');
     //else{
-  
+        
         Tasks.insert({
         taskTitle: data.taskTitle,
         text: data.text, 

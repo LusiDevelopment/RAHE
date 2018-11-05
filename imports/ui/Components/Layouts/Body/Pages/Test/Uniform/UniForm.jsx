@@ -104,7 +104,7 @@ export default class MyUniForm extends Component {
 
                        <AutoField  name="comments"  />
                      
-                      <AutoField  name="author"  />
+                      
                       <AutoField  name="responsible"  />
 
                       <AutoField  name="status"  />

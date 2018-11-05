@@ -49,6 +49,8 @@ decrement =() => {
 componentDidMount(){
 
     console.log("Test did mounted...");
+ //  
+
   }
 
   componentWillMount(){
@@ -59,6 +61,7 @@ componentDidMount(){
   componentWillUnmount(){
 
     console.log("Test will Unmounted...");
+    
  
   }
 
