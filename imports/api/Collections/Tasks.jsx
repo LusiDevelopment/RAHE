@@ -15,6 +15,30 @@ import SimpleSchema from 'simpl-schema';
 
 const Tasks = new Mongo.Collection('tasks');
 
+const Comments = new SimpleSchema ({
+
+    comment:{
+        type:String, 
+        label:"comments here",
+        optional:true,
+      
+    },
+    addedAt:{
+        type:Date,
+        autoValue:  function() {
+            if (this.isInsert) {
+              return new Date();
+            } else if (this.isUpsert) {
+              return {$setOnInsert: new Date()};
+            } else {
+              this.unset();  // Prevent user from supplying their own value
+            }
+          }
+
+    },
+
+});
+
 
 const TasksSchema = new SimpleSchema({
 
@@ -47,10 +71,7 @@ const TasksSchema = new SimpleSchema({
                                     console.log("User ID", Meteor.user().username);
                                     return Meteor.userId();
                                     }
-                                    else{
-
-                                    }
-            
+               
         },
       
     },
@@ -62,10 +83,7 @@ const TasksSchema = new SimpleSchema({
     },
 
     comments:{
-        type:String, 
-        defaultValue:'',
-        label:"comments here",
-        optional:true,
+        type:Comments, 
       
     },
 
@@ -94,7 +112,6 @@ const TasksSchema = new SimpleSchema({
    },
     createdAt:{
         type:Date,
-        optional:true,
         autoValue:  new Date,
      
     },
