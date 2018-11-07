@@ -83,7 +83,7 @@ const TasksSchema = new SimpleSchema({
     },
 
     comments:{
-        type:Comments, 
+        type:Comments
       
     },
 
@@ -112,7 +112,16 @@ const TasksSchema = new SimpleSchema({
    },
     createdAt:{
         type:Date,
-        autoValue:  new Date,
+        autoValue:  function() {
+            if (this.isInsert) {
+              return new Date();
+            } else if (this.isUpsert) {
+              return {$setOnInsert: new Date()};
+            } else {
+              this.unset();  // Prevent user from supplying their own value
+            }
+          }
+
      
     },
     targetCompletionDate:{
