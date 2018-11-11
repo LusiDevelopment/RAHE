@@ -29,7 +29,7 @@ export default class Task extends Component {
       };
 
   render(){
-
+    console.log(this.props.task.comments);
     return (
          
              <div>
@@ -54,10 +54,10 @@ export default class Task extends Component {
                                   <SendIcon />
                               </ListItemIcon>
                               <ListItemText>
-                                  {this.props.task.comments}
+                                  {this.props.task.comments.comment} 
                               </ListItemText>
                               <ListItemText>
-                                  {this.props.task.text}
+                                  {this.props.task.text} 
                               </ListItemText>
                             </ListItem>
                           </List>

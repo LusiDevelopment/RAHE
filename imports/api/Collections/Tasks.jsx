@@ -31,7 +31,8 @@ const Comments = new SimpleSchema ({
             } else if (this.isUpsert) {
               return {$setOnInsert: new Date()};
             } else {
-              this.unset();  // Prevent user from supplying their own value
+              return new Date();
+             // this.unset();  // Prevent user from supplying their own value
             }
           }
 
@@ -118,7 +119,8 @@ const TasksSchema = new SimpleSchema({
             } else if (this.isUpsert) {
               return {$setOnInsert: new Date()};
             } else {
-              this.unset();  // Prevent user from supplying their own value
+              return new Date();
+            //  this.unset();  // Prevent user from supplying their own value
             }
           }
 
