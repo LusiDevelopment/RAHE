@@ -4,6 +4,7 @@ import  {TasksSchema}  from '../../../../../../../api/Collections/Tasks';
 
 import {Typography} from '@material-ui/core';
 import MAutoForm from './MAutoForm';
+import BeforeAfterWrapper from 'material-ui/internal/BeforeAfterWrapper';
 
 
 
@@ -50,7 +51,14 @@ export default class MyUniForm extends Component {
       console.log("Data before:", data);
      
       // Here we send the data to our method .. call the method
-      Meteor.call('tasks.insert', {...data});
+    Meteor.call('tasks.insert', {...data}, (error,edata)=> {
+      console.log("Data", edata,"Error",error);
+
+       if(error){
+
+        Bert.alert('Please LogIn','danger', 'fixed-top');
+       }
+    });
 
       console.log("Data after:", data);
 
@@ -103,6 +111,8 @@ export default class MyUniForm extends Component {
                       <AutoField  name="text"  />
 
                       <AutoField  name="comments"  />
+
+                      <AutoField name="author"/>
                       
                       <AutoField  name="responsible"  />
 

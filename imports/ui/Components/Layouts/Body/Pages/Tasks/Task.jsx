@@ -10,6 +10,8 @@ import StarBorder from '@material-ui/icons/StarBorder';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import SendIcon from '@material-ui/icons/Send';
+import Divider from '@material-ui/core/Divider';
+import TextField from '@material-ui/core/TextField';
 
 
 export default class Task extends Component {
@@ -33,7 +35,7 @@ export default class Task extends Component {
     return (
          
              <div>
-
+             <Divider/>
                  <List
                     component="nav">
 
@@ -42,7 +44,13 @@ export default class Task extends Component {
                                   <StarBorder />
                               </ListItemIcon>
                               <ListItemText>
-                                  {this.props.task.title}
+                              <input type=
+                              "checkbox" />   {this.props.task.title}
+                         
+                              </ListItemText>
+                              <ListItemText>
+                              
+                              {this.props.task.responsible}
                               </ListItemText>
                               {this.state.open ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
@@ -54,18 +62,47 @@ export default class Task extends Component {
                                   <SendIcon />
                               </ListItemIcon>
                               <ListItemText>
-                                  {this.props.task.comments.comment} 
-                              </ListItemText>
+                                {this.props.task.comments.comment} 
+                              </ListItemText> <br/>
+                             
                               <ListItemText>
                                   {this.props.task.text} 
+                              </ListItemText><br/>
+                              
+                        <spane>Status</spane>
+                              <ListItemText>
+                                   {this.props.task.status} 
                               </ListItemText>
+
+                              <ListItemText>
+                                  {this.props.task.priority} 
+                              </ListItemText>
+
+                              <ListItemText
+                            
+                              >
+                              <TextField
+                              required
+                              label="Category"
+                              defaultValue={this.props.task.category} 
+                              margin="normal"
+                              variant="outlined"
+                            />
+                              </ListItemText>
+
+                            
+
+                             
+
                             </ListItem>
                           </List>
                         </Collapse>
 
-                  </List>      
-
+                  </List>  
+                      
+                  
             </div>  
+           
                 
     );
   }
