@@ -82,7 +82,7 @@ export default class Task extends Component {
                             
                               >
                               <TextField
-                              required
+                              //required
                               label="Category"
                               defaultValue={this.props.task.category} 
                               margin="normal"
