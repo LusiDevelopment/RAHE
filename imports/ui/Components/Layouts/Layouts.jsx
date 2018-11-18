@@ -52,7 +52,9 @@ export default class Layout extends Component {
   render(){
 
     const title = "Rahe Application";
-    console.log("Open", this.state.Open);
+
+   // console.log("Open", this.state.Open);
+   
     return (
 
       <div  >

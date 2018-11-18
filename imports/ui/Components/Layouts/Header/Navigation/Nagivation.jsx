@@ -53,20 +53,20 @@ class Navigation extends Component {
 
    }
 
-
- 
-
-
   render(){
 
     
-
     const { classes, theme } = this.props;
+
+    var navBarStyle ={
+                    backgroundColor: "#B388FF"
+
+    };
 
     return (
         <div className={classes.toolbar}> 
           
-                <AppBar  position="static" z-index={5} className={classes.appBar} >
+                <AppBar  style={navBarStyle} position="static" z-index={5} className={classes.appBar} >
                         <Toolbar>
                             <IconButton
                               color="inherit"

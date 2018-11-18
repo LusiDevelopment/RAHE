@@ -1,11 +1,17 @@
 {
+
     "public":{
 
+        "pub":"Hello, this is the public data",
+        "ga":{
+            "account": "UA-XXXXXX-X"
+        }
     },
 
     "private":{
-
+        "priv":"Hello, this is the private data" 
         
-    }
+    },
+    "hello":"Hello, this is the general publ data" 
 
 }
