@@ -9,12 +9,6 @@
  * 
 */
 
-//////////////////////////////////////////////////////////////////
-//  Author: Annick K                                            
-//
-//
-//
-//////////////////////////////////////////////////////////////////
 
 import React, {Component, Fragment}  from "react";
 
@@ -32,55 +26,36 @@ import tasksReducer, {tasksInitialState} from './Reducers/tasksReducer';
 import userReducer, {userInitialState} from './Reducers/userReducer';
 import headerReducer, {headerInitialState} from './Reducers/headerReducer';
 
+/*
+  *      Initialize all store with the default values
+*/
 const initialState = {
     tasks: tasksInitialState,
     user: userInitialState,
     header: headerInitialState
 };
 
-
+/*
+  *     Combine all imported reducers to be send to the store
+*/
 const allReducers = combineReducers({
     tasks: tasksReducer,
     user: userReducer,
     header: headerReducer
 })
 
+/*
+  *     create store    
+*/
 const store = createStore(allReducers,
                           initialState,
                           window.devToolsExtension && window.devToolsExtension()
                           );
 
-// console.log(store.getState());
-
-const updateUserAction = {
-      type: 'UPDATE_USER',
-      payload: {
-        user: 'John'
-      }
-};
-
-const toggleDrawerAction = {
-  type: 'TOGGLE_DRAWER',
-  payload: { 
-    drawerOpen: true
-  }
-};
-
-
-store.dispatch(toggleDrawerAction);
-
 
 export default class App extends Component {
 
     // Define the defaults values and set props and states of the App
-    constructor(props) {
-      super(props);
-      this.state = {
-
-            title: "Welcome to the title",
-      }
-
-   }
 
   render() {
 

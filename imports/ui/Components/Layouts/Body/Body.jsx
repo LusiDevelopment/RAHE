@@ -1,82 +1,58 @@
 import  React, {Component}  from "react";
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Drawer from '@material-ui/core/Drawer';
+import {Route, Switch} from 'react-router-dom';
+
 import { withStyles } from '@material-ui/core/styles';
-import Hidden from '@material-ui/core/Hidden';
- 
 
-import LeftPane from "./Pages/Layout/LeftPane";
-import RightPane from "./Pages/Layout/RightPane";
-import logInDrawer from "../Header/Navigation/LogInDrawer";
+import Home from "./Pages/Home/Home";
+import Accounts from "./Pages/Accounts/Acounts";
+import Error404 from "./Pages/Error404/Error404";
+import TasksList from "./Pages/Tasks/Tasks.jsx";
+import Test from "./Pages/Test/Test";
 
-const styles = {
 
-    Paper:{
-        padding:20,
-        marginTop:20,
-        marginBottom:20,
-        height:500,
-        overflowY:'auto'
-    },
-    drawerH: {
-        height: 'calc(100% - 264px)',
-        top: 64
-      }
+export default  class Body extends Component {
 
-}
+    render(){
 
-class Body extends Component {
+        return (
+            <main>
+        
+                <Switch>
+                
+                    <Route 
+                            exact path="/" 
+                            component={Home}
+                    
+                            />
+                
+                    <Route 
+                            path="/accounts" 
+                            component={Accounts} 
+                            />
 
-//wrap="nowrap" 
-constructor(props) {
-    super(props);
+                    <Route
+                            path='/tasks'
+                            render={(props) => <TasksList {...props}  />}
+                            />
+
+
+
+                    <Route 
+                            path="/test" 
+                            component={Test} 
+                            />
+                    
+
+                    <Route 
+                            component={Error404}
+                            />
+
+                </Switch> 
+                
+            </main>
+                
     
-    this.state = {
-
-     
-     
+        );
     }
 
- }
-
-
-
-
-  render(){
-    const { classes } = this.props;
-    return (
-        <main>
-          
-            <Drawer
-                   
-                    open={this.props.Open}
-                    onClose={this.props.toggleDrawer}
-                    onKeyDown={this.props.toggleDrawer}
-               
-                >
-                <div 
-                    tabIndex={0}
-                    role="button"
-                    onClick={this.props.toggleDrawer}
-                    onKeyDown={this.props.toggleDrawer}
-                >
-                    
-                    <LeftPane styles={styles} toggleDrawer={this.toggleDrawer} Open={this.state.Open} />
-                </div>
-            </Drawer>
-          
-      
-           
-            <RightPane styles={styles} />
-            
-        </main>
-            
-      
-           
-    );
-  }
-
 } 
-
-export default withStyles(styles)(Body);

@@ -1,10 +1,30 @@
+/* 
+ *  Author: Annick K
+ *  Created on: 2018-10-26
+ *  Component: Header
+ * 
+ *  Description: Header of the App
+ * 
+ *  Changes and updates: 
+ * 
+*/
+
 import  React, {Component}  from "react";
 
 import {connect} from 'react-redux';
+import Drawer from '@material-ui/core/Drawer';
 
 import Navigation from "./Navigation/Nagivation";
 
 import { toggleDrawer } from '../../../Application/Actions/headerActions';
+
+
+import LeftPane from "./Navigation/LeftPane";
+
+const initialState = {
+    toggleOpen : false,
+};
+
 
 class Header extends Component {
 
@@ -13,26 +33,54 @@ class Header extends Component {
 
       this.onToggleDrawer = this.onToggleDrawer.bind(this);
 
+      this.onTabIsClicked = this.onTabIsClicked.bind(this);
   }
 
   onToggleDrawer(e){
     
       e.preventDefault();
-
-      this.props.onToggleDrawer(this.props.header.drawerOpen);
-      console.log("On Toggle Drawer",this.props.header);
+      
+      this.props.onToggleDrawer(initialState.toggleOpen);
+     
+     
   } 
+
+  onTabIsClicked(e){
+     // e.preventDefault();
+
+        console.log(e);
+       
+  }
  
   render(){
       
-  //  console.log("Header New Props:",this.props);
+  initialState.toggleOpen = this.props.header.toggleDrawer;
 
-
+  //console.log(this.props.header.drawerData);
+  
     return (
               <header>
+                    <Drawer
+                   
+                         open={initialState.toggleOpen}
+                         onClose={ this.onToggleDrawer}
+                         onKeyDown={this.onToggleDrawer}
+                                
+                    >
+                        <div 
+                            tabIndex={0}
+                            role="button"
+                            onClick={this.onToggleDrawer}
+                            onKeyDown={this.onToggleDrawer}
+                        >
+                                    
+                                <LeftPane drawerData={this.props.header.drawerData} onTabIsClicked={this.onTabIsClicked} toggleDrawer={this.onToggleDrawer} />
+                        </div>
+                    </Drawer>
                
-                       <Navigation title = {this.props.title} Open={this.props.Open} toggleDrawer={this.props.toggleDrawer} />
-                      <button onClick={this.onToggleDrawer}> Test Toggle </button>
+                    <Navigation  title = {this.props.header.title} toggleDrawer={this.onToggleDrawer}  />
+
+                  
               </header>
         );
   } 

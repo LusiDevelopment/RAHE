@@ -1,7 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 
+import Typography from '@material-ui/core/Typography';
 
-class TimeContainer extends Component {
+export default class TimeContainer extends Component {
   constructor() {
     super()
     let d = new Date()
@@ -31,10 +32,16 @@ class TimeContainer extends Component {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"]
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   return (
-      <div >
-        <h3>{days[this.state.day]}, {months[this.state.month]} {this.state.date}, {this.state.year} {this.state.time}</h3>
-      </div>
+      <Fragment >
+        <Typography variant="body2"    align="center" >
+            {days[this.state.day]}, 
+            {months[this.state.month]} 
+            {this.state.date}, 
+            {this.state.year} 
+            {this.state.time}
+        </Typography>
+      </Fragment>
     )
   }
 }
-export default TimeContainer
+

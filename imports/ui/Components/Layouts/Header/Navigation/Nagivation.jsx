@@ -1,26 +1,27 @@
+/* 
+ *  Author: Annick K
+ *  Created on: 2018-10-26
+ *  Component: Navigation
+ * 
+ *  Description: the navigation Top of the App
+ * 
+ *  Changes and updates: 
+ * 
+*/
+
 import  React, {Component}  from "react";
 import {Link} from 'react-router-dom';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Drawer from '@material-ui/core/SwipeableDrawer';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
-import Divider from '@material-ui/core/Divider';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import Button from '@material-ui/core/Button';
 
 import { withStyles } from '@material-ui/core/styles';
 
 
 import AccountsUIWrapper from "../../../../AccountsUI/AccountsUI";
-import logInDrawer from "./LogInDrawer";
-import MenuDrawer from "./MenuDrawer";
 
 const drawerWidth = 240;
 
@@ -30,6 +31,7 @@ const styles = theme => ({
   },
   grow: {
     flexGrow: 1,
+    align:'center',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -45,17 +47,11 @@ class Navigation extends Component {
   constructor(props) {
       super(props);
       
-      this.state = {
-
-    
-       
-      }
-
+      
    }
 
   render(){
 
-    
     const { classes, theme } = this.props;
 
     var navBarStyle ={
@@ -76,7 +72,7 @@ class Navigation extends Component {
                                   <MenuIcon />
                             </IconButton>
                         
-                            <Typography variant="display1" color="inherit" className={classes.grow} >
+                            <Typography variant="display1" color="inherit" align='center' className={classes.grow} >
                                   {this.props.title}
                             </Typography>
                        
