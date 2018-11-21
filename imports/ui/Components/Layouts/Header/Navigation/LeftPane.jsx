@@ -57,11 +57,65 @@ class ExtendedListItem extends Component {
 }
 */
 
+
 export default class LeftPane extends Component {
+
+  getLink(titleLink) {
+     
+      switch(titleLink){
+        case 'Home':
+              return "/";
+          
+        case 'Account Settings':
+              return "/accounts";
+            
+        case 'New Task':
+              return"/test";
+          
+        case 'List of Tasks':
+              return "/tasks";
+            
+        default:
+              return "/";
+            
+      }
+ 
+}
+
+
+  getIcon(titleIcon) {
+     
+      switch(titleIcon){
+        case 'Home':
+              return  <HomeIcon/> ;
+          
+        case 'Account Settings':
+              return  <Settings />;
+            
+        case 'New Task':
+              return  <ListIcon />;
+          
+        case 'List of Tasks':
+              return    <Create /> ;
+            
+        default:
+              return  <HomeIcon/>;
+            
+      }
+ 
+}
 
   render(){
   
-   // console.log(this.props.drawerData);
+  //  this.props.drawerData.tab.map((data)=> (console.log("Mapped Data:",data)) ) ;
+   //console.log("Mapped Data:",this.props.drawerData);
+
+
+//const titleLink = this.props.drawerData.tab[0].title;
+
+ 
+
+  // console.log("Link Ref:",this.getlinkfunction());
 
     return (
       <Fragment>
@@ -71,59 +125,26 @@ export default class LeftPane extends Component {
                       <Grid item >
                        
                               <Typography align="center" variant="display1" component="h2">
-                                 {this.props.drawerData.title}
+                                  {this.props.drawerData.title}
                               </Typography> 
 
                                
 
                               <List component="nav">
-
-                                  <Link to="/" >
-                                    <ListItem button onClick={ ()=> this.props.onTabIsClicked(1) }  >
-                                      <ListItemIcon>
-                                         <HomeIcon/>
-                                      </ListItemIcon>
-                                      <ListItemText primary=  {this.props.drawerData.homeTab.title} />
-                                    </ListItem>
-                                  </Link> 
-                      
-
-                                  <Divider/>
-
-                                  
-                                  <Link to="/accounts" > 
-                                      <ListItem button onClick={()=> this.props.onTabIsClicked(2) }>
-                                        <ListItemIcon>
-                                          <Settings />
-                                        </ListItemIcon>
-                                        <ListItemText primary=  {this.props.drawerData.accountTab.title} />
-                                      </ListItem>
-                                  
-                                  </Link> 
-
-                                  <Divider/>
-
-                                 <Link to="/tasks" > 
-                                    <ListItem button onClick={()=> this.props.onTabIsClicked(3) } >
-                                      <ListItemIcon>
-                                        <ListIcon />
-                                      </ListItemIcon>
-                                      <ListItemText primary=  {this.props.drawerData.listTab.title} />
-                                    </ListItem>
-                                  
-                                  </Link> 
-
-                                  <Divider />
-                                    <Link to="/test" > 
-                                      <ListItem button onClick={()=> this.props.onTabIsClicked(4) } >
-                                      <ListItemIcon>
-                                        <Create />
-                                      </ListItemIcon>
-                                      <ListItemText primary=  {this.props.drawerData.newTaskTab.title} />
-                                      </ListItem>
-
-                                    </Link> 
-                                  <Divider  />
+                                    {
+                                      this.props.drawerData.tab.map((data)=> (
+                                    
+                                            <Link to={this.getLink(data.title)} >
+                                                <ListItem button onClick={ ()=> this.props.onTabIsClicked(data.key) }  >
+                                                  <ListItemIcon>
+                                                    {this.getIcon(data.title)}
+                                                  </ListItemIcon>
+                                                  <ListItemText primary=  {data.title} />
+                                                </ListItem>
+                                                <Divider/>
+                                            </Link> 
+                                    ) ) 
+                                  }
 
                               </List>
                           </Grid>

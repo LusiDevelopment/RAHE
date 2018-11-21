@@ -26,7 +26,7 @@ class TasksList extends Component {
 
  
   renderTasks() {
-    //console.log(Tasks);
+    console.log("Tasks data",this.props.tasks);
     return this.props.tasks.map((task) => (
       <Task key={task._id} task={task} />
     ));

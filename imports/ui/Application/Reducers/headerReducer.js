@@ -6,27 +6,34 @@ export const headerInitialState = {
     toggleDrawer: false,
     drawerData:{
         title:"Menu",
-        homeTab:{
-            title:"Home",
-            isClicked:false,
-            numberOfClicks: 0,  
-        },
-        accountTab:{
-            title:"Account Settings",
-            isClicked:false,
-            numberOfClicks: 0,     
-        },
-        listTab:{
-            title:"List of Tasks",
-            isClicked:false,
-            numberOfClicks: 0,    
-        },
-        newTaskTab:{
-            title:"New Task",
-            isClicked:false,
-            numberOfClicks: 0,   
-        },
+        tab:[ 
+                {
+                    key:0,
+                    title:"Home",
+                    isClicked:false,
+                    numberOfClicks: 0,  
+                },
+                {
+                    key:1,
+                    title:"Account Settings",
+                    isClicked:false,
+                    numberOfClicks: 0,     
+                },
+                {
+                    key:2,
+                    title:"List of Tasks",
+                    isClicked:false,
+                    numberOfClicks: 0,    
+                },
+                {
+                    key:3,
+                    title:"New Task",
+                    isClicked:false,
+                    numberOfClicks: 0,   
+                },
+            ]
     }
+    
   };
 
 
