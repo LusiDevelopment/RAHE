@@ -134,7 +134,7 @@ export default class LeftPane extends Component {
                                     {
                                       this.props.drawerData.tab.map((data)=> (
                                     
-                                            <Link to={this.getLink(data.title)} >
+                                            <Link to={this.getLink(data.title)} key={data.key} >
                                                 <ListItem button onClick={ ()=> this.props.onTabIsClicked(data.key) }  >
                                                   <ListItemIcon>
                                                     {this.getIcon(data.title)}

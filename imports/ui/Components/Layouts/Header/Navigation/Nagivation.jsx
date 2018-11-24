@@ -22,6 +22,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 
 import AccountsUIWrapper from "../../../../AccountsUI/AccountsUI";
+import Account from "../../../../AccountsUI/Accounts/Account";
 
 const drawerWidth = 240;
 
@@ -76,7 +77,7 @@ class Navigation extends Component {
                                   {this.props.title}
                             </Typography>
                        
-                            <AccountsUIWrapper/>
+                          <Account/>
                         
                       </Toolbar>
                      
