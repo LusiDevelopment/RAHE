@@ -72,7 +72,10 @@ class SignIn extends Component {
           Meteor.loginWithPassword(email, password, (error) => {
             if (error) {
               this.setState({ error: error.reason });
+              console.log("ERROR ON USER SING IN:",error);
             }
+
+            console.log("user sign in now: ", Meteor.user());
           });
 
         }
@@ -88,6 +91,7 @@ class SignIn extends Component {
           Accounts.createUser({ email, password }, (error) => {
             if (error) {
               this.setState({ error: error.reason });
+              console.log("ERROR ON USER CREATION:",error);
             } else {
               this.onSignIn(); // temp hack that you might need to use
             }
