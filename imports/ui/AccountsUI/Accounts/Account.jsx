@@ -1,6 +1,7 @@
 // RNPasswordExample/Account.js
 
 import React, { Component } from 'react';
+import {Meteor} from 'meteor/meteor';
 
 import SignIn from './SignIn';
 import SignOut from './SignOut';
@@ -12,13 +13,17 @@ class Account extends Component {
   }
 
   getMeteorData() {
+    console.log("getMeteorData is running", Meteor.user());
     return {
-      user: Meteor.user(),
+      currentUser: Meteor.user(),
     };
   }
-
+             
   render() {
     console.log("user in now: ",this.getMeteorData());
+    console.log("Account this user data in now: ",this.data.user);
+  
+
     if (this.data.user) {
       return <SignOut />
     }

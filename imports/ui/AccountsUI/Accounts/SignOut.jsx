@@ -4,7 +4,9 @@ class SignOut extends Component {
   render() {
     return (
       <div >
+        
         <p>Sign Out</p>
+        
       </div>
     );
   }

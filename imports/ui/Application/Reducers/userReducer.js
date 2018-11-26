@@ -1,13 +1,23 @@
 
 
 export const userInitialState = {
-      user: 'Annick'
+      userData:{
+            username: '',
+            email: '',
+            password: '',
+            error : null,
+          }
     };
 
 export default function userReducer(state=userInitialState,action){
     switch(action.type) {
-      case 'UPDATE_USER':
-            return action.payload.user; 
+     
+      case 'CURRENT_USER':
+            return Object.assign({}, state, { 
+                  userData:action.payload.userData
+           
+                });
+                  
       default:
             return state;
   

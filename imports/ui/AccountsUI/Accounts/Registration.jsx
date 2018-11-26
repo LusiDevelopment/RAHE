@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { Meteor, Account} from 'meteor/meteor'
-import {connect} from 'react-redux';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -12,22 +11,17 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Chip from '@material-ui/core/Chip';
 
-import {getCurrentUser} from '../../Application/Actions/userActions';
-
-
 class SignIn extends Component {
 
     constructor(props) {
         super(props);
     
         this.state = {
-          userData:{
-            username: '',
-            email: '',
-            password: '',
-            error : null,
-          },
-          signInDialogOpen: false,
+          username: '',
+          email: '',
+          password: '',
+          error: null,
+          open: false,
         };
 
         this.handleClickOpen = this.handleClickOpen.bind(this);
@@ -36,17 +30,18 @@ class SignIn extends Component {
         this.onDataChange = this.onDataChange.bind(this);
 
         this.onSignIn = this.onSignIn.bind(this);
-        
+        this.onCreateAccount = this.onCreateAccount.bind(this);
+
       };
 
       handleClickOpen = () => {
-        this.setState({ signInDialogOpen: true });
+        this.setState({ open: true });
       };
     
       handleClose = () => {
-        this.setState({ signInDialogOpen: false });
+        this.setState({ open: false });
 
-       // console.log(this.state.userData.email);
+        console.log(this.state.email);
       
       };
 
@@ -58,56 +53,42 @@ class SignIn extends Component {
       }
 
       isValid() {
-        const { username, password } = this.state.userData;
+        const { email, password } = this.state;
         let valid = false;
     
-        if (username.length > 0 && password.length > 0) {
+        if (email.length > 0 && password.length > 0) {
           valid = true;
         }
     
-        if (username.length === 0) {
-          this.setState({ error: 'Client error: You must enter an email address' });
+        if (email.length === 0) {
+          this.setState({ error: 'You must enter an email address' });
         } else if (password.length === 0) {
-          this.setState({ error: 'Client error: You must enter a password' });
+          this.setState({ error: 'You must enter a password' });
         }
     
         return valid;
       }
     
-      onSignIn() {
-        const { username, password } = this.state.userData;
-
-        console.log("user  is signing In....: ");
     
-      //  console.log("user input now: ", Meteor.user());
-
+      onCreateAccount() {
+        const { username, email, password } = this.state;
+    
         if (this.isValid()) {
           // do stuff
-          Meteor.loginWithPassword( username, password , (error) => {
-        
+          Accounts.createUser({username, email, password}, (error) => {
             if (error) {
               this.setState({ error: error.reason });
-              console.log("ERROR ON USER SING IN:",error);
+              console.log("ERROR ON USER CREATION:",error);
+            } else {
+              this.onSignIn(); // temp hack that you might need to use
             }
-
-            console.log("user sign in now: ", Meteor.user());
           });
 
         }
 
-        console.log("user  is signed In....: ");
-        console.log("user input now: ", Meteor.user());
-        console.log("user ID now: ", Meteor.userId());
-
-        console.log("Username:", username);
-        console.log("Password:", password);
-        
-        this.props.getCurrentUser(this.state.userData);
-
-        this.setState({ signInDialogOpen: false });
-
+        this.setState({ open: false });
       }
-    
+      
     
       
   render() {
@@ -115,7 +96,7 @@ class SignIn extends Component {
       <div>
         <Button onClick={this.handleClickOpen}> SingIn </Button>
         <Dialog
-          open={this.state.signInDialogOpen}
+          open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
@@ -124,8 +105,8 @@ class SignIn extends Component {
 
              
              {
-               this.userData.state.error ? 
-               <Chip label={this.userData.state.error}  /> : <div />
+               this.state.error ? 
+               <Chip label={this.state.error}  /> : <div />
             }
 
             <TextField
@@ -135,13 +116,10 @@ class SignIn extends Component {
                 label="username"
                 type="username"
                 onChange=
-                {e=> {
-                  //console.log("Input dtata ", e.target.email.value);
-                 // this.setState({username: e.target.value})
-                }}
+                {this.onDataChange}
                 fullWidth
               />
-
+              
               or 
               <TextField
                 autoFocus
@@ -152,7 +130,7 @@ class SignIn extends Component {
                 onChange=
                 {e=> {
                   //console.log("Input dtata ", e.target.email.value);
-                 // this.setState({email: e.target.value})
+                  this.setState({email: e.target.value})
                 }}
                 fullWidth
               />
@@ -165,15 +143,13 @@ class SignIn extends Component {
                 type="password"
                 onChange=
                 {e=> {
-                 // this.setState({password: e.target.value})
+                  this.setState({password: e.target.value})
                 }}
                 fullWidth
               />
             </DialogContent>
           <DialogActions>
-            <Button onClick={this.onSignIn} color="primary">
-              Sign In
-            </Button>
+            
             <Button onClick={this.onCreateAccount} color="primary">
               Create Account
             </Button>
@@ -184,13 +160,5 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: this.state.userData 
-});
 
-const mapActionsToProps = {
-
-  onSignIn : getCurrentUser
-}
-
-export default connect(mapStateToProps,mapActionsToProps) (SignIn);
+export default SignIn;
