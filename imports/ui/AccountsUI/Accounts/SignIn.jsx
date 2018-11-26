@@ -21,7 +21,7 @@ class SignIn extends Component {
         super(props);
     
         this.state = {
-          userData:{
+          userData: {
             username: '',
             email: '',
             password: '',
@@ -50,12 +50,27 @@ class SignIn extends Component {
       
       };
 
-      onDataChange(e){
-        const eTar= $(e.target);
+      onDataChange(e,tag){
+       // const eTar= $(e.target);
 
-          console.log("Data event target: " , eTar.find("#username").val());
+         // console.log("Data event target: " , eTar.find("#username").val());
+
+         console.log("Data change Event: ", e.target.value);
+
+         console.log("Data change Passed name",tag);
          
       }
+
+      onDataIn(e,tag){
+        // const eTar= $(e.target);
+ 
+          // console.log("Data event target: " , eTar.find("#username").val());
+ 
+          console.log("Data In Event: ", e.target.value);
+ 
+          console.log("Data In Passed name",tag);
+          
+       }
 
       isValid() {
         const { username, password } = this.state.userData;
@@ -102,7 +117,7 @@ class SignIn extends Component {
         console.log("Username:", username);
         console.log("Password:", password);
         
-        this.props.getCurrentUser(this.state.userData);
+       // this.props.getCurrentUser(this.state.userData);
 
         this.setState({ signInDialogOpen: false });
 
@@ -124,8 +139,8 @@ class SignIn extends Component {
 
              
              {
-               this.userData.state.error ? 
-               <Chip label={this.userData.state.error}  /> : <div />
+               this.state.userData.error ? 
+               <Chip label={this.state.userData.error}  /> : <div />
             }
 
             <TextField
@@ -135,10 +150,14 @@ class SignIn extends Component {
                 label="username"
                 type="username"
                 onChange=
-                {e=> {
+                {e=> { this.onDataChange(e,'username')
                   //console.log("Input dtata ", e.target.email.value);
                  // this.setState({username: e.target.value})
                 }}
+                onBlur =   {e=> { this.onDataIn(e,'username')
+                //console.log("Input dtata ", e.target.email.value);
+               // this.setState({username: e.target.value})
+              }}
                 fullWidth
               />
 
@@ -184,6 +203,7 @@ class SignIn extends Component {
   }
 }
 
+/*
 const mapStateToProps = state => ({
   currentUser: this.state.userData 
 });
@@ -194,3 +214,6 @@ const mapActionsToProps = {
 }
 
 export default connect(mapStateToProps,mapActionsToProps) (SignIn);
+*/
+
+export default SignIn ;
