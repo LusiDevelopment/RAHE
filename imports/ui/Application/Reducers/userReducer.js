@@ -5,7 +5,11 @@ export const userInitialState = {
             username: '',
             email: '',
             password: '',
-            error : null,
+            error : {
+                  username:'',
+                  email: '',
+                  password: ''
+                },
           }
     };
 

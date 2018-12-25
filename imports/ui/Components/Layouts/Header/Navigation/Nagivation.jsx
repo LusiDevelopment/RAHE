@@ -64,6 +64,7 @@ class Navigation extends Component {
         <div className={classes.toolbar}> 
           
                 <AppBar  style={navBarStyle} position="static" z-index={5} className={classes.appBar} >
+                      
                         <Toolbar>
                             <IconButton
                               color="inherit"
@@ -76,10 +77,11 @@ class Navigation extends Component {
                             <Typography variant="display1" color="inherit" align='center' className={classes.grow} >
                                   {this.props.title}
                             </Typography>
-                       
-                          <Account/>
+
+                          <AccountsUIWrapper/>
                         
-                      </Toolbar>
+                        </Toolbar>
+                      
                      
                 </AppBar>
          </div> 

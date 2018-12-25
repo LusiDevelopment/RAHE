@@ -40,11 +40,11 @@ class TasksList extends Component {
         
               <h1>Todo List</h1>
   
-              <div>
+             
                   
-                    {this.renderTasks()}
+              {this.renderTasks()}
                 
-              </div>
+              
 
       </div>
     );
